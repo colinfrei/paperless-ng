@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ConsumerStatusService } from 'src/app/services/consumer-status.service';
 import { environment } from 'src/environments/environment';
+import { FILTER_IS_IN_INBOX } from 'src/app/data/filter-rule-type';
 
 export interface Statistics {
   documents_total?: number
@@ -46,7 +47,7 @@ export class StatisticsWidgetComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
   }
   
-  filterDocuments(object: PaperlessCorrespondent) {
+  filterDocuments() {
     this.list.quickFilter([{rule_type: FILTER_IS_IN_INBOX}])
   }
 }
