@@ -18,7 +18,8 @@ export interface Statistics {
 export class StatisticsWidgetComponent implements OnInit, OnDestroy {
 
   constructor(private http: HttpClient,
-    private consumerStatusService: ConsumerStatusService) { }
+    private consumerStatusService: ConsumerStatusService,
+    private list: DocumentListViewService) { }
 
   statistics: Statistics = {}
 
@@ -44,5 +45,8 @@ export class StatisticsWidgetComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-
+  
+  filterDocuments(object: PaperlessCorrespondent) {
+    this.list.quickFilter([{rule_type: FILTER_IS_IN_INBOX}])
+  }
 }
